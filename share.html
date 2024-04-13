@@ -8,6 +8,8 @@
 <body>
     <!-- Script to handle redirection -->
     <script>
+        console.log('Current File: ' + getUrlParameter('file'));
+        
         // Function to fetch redirect URLs from JSON file and perform redirection
         function handleRedirect() {
             // Make an AJAX request to fetch the JSON data
