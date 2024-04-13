@@ -12,7 +12,7 @@
         function handleRedirect() {
             // Make an AJAX request to fetch the JSON data
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'redirects.json', true);
+            xhr.open('GET', 'https://pages.appgeniusnest.top/redirects.json', true);
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     // Parse JSON response into an object
