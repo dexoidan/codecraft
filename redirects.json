@@ -1,5 +1,6 @@
 {
     "hello.pdf": "https://onedrive.live.com/embed?resid=22E27BBB4313E984%2121447&authkey=!AMYl1_a1s8N_0i8&em=2",
-    "filename1.pdf": "https://example.com/path/to/remote/file1.pdf",
-    "filename2.pdf": "https://example.com/path/to/remote/file2.pdf"
+    "sensitive-research.pdf": "http://assets.cambridge.org/97805217/18233/excerpt/9780521718233_excerpt.pdf",
+    "global-ocean-science.pdf": "https://www.un.org/regularprocess/sites/www.un.org.regularprocess/files/segment_2_p2-1_francesca_santoro_ioc.pdf",
+    "japan-society-promotion-of-science.pdf": "https://www.jsps.go.jp/file/storage/e-news/2023/oshirase_e_20231117.pdf"
 }
