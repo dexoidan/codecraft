@@ -11,6 +11,7 @@ https://pages.appgeniusnest.top/share.html?file=NSA-open-source-SIMP-platform.pd
 https://pages.appgeniusnest.top/share.html?file=NSA-The-Next-Wave-CyberAnalysisResearch.pdf
 https://pages.appgeniusnest.top/share.html?file=Fraud-Prevention-Recovery-Act-S4089.pdf
 https://pages.appgeniusnest.top/share.html?file=Clean-Water-Environmental-Protection-Agency.pdf
+https://pages.appgeniusnest.top/share.html?file=NMSSaveEditor.exe
 ```
 
 Page `share.html` is redirecting files to an actual URL address by using some JavaScript code parsing `redirects.json` file.
