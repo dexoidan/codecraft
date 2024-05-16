@@ -14,6 +14,9 @@ https://pages.appgeniusnest.top/share.html?file=Clean-Water-Environmental-Protec
 https://pages.appgeniusnest.top/share.html?file=NMSSaveEditor.exe
 https://pages.appgeniusnest.top/share.html?file=DanmarkFeriekalender2024.pdf
 https://pages.appgeniusnest.top/share.html?file=DenmarkHolidays2024.pdf
+https://pages.appgeniusnest.top/share.html?file=ansible_automation_sysadmin.pdf
+https://pages.appgeniusnest.top/share.html?file=redhat_ansible_automation_install_guide.pdf
+https://pages.appgeniusnest.top/share.html?file=redhat_ansible_automation_platform_planning.pdf
 ```
 
 Page `share.html` is redirecting files to an actual URL address by using some JavaScript code parsing `redirects.json` file.
