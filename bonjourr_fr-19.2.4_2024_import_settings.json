@@ -1,0 +1,155 @@
+{
+  "about": {
+    "browser": "online",
+    "version": "19.2.4"
+  },
+  "showall": true,
+  "lang": "da",
+  "dark": "disable",
+  "favicon": "",
+  "tabtitle": "",
+  "greeting": "",
+  "pagegap": 1,
+  "pagewidth": 1600,
+  "time": true,
+  "main": true,
+  "dateformat": "eu",
+  "background_blur": 6,
+  "background_bright": 0.7,
+  "background_type": "unsplash",
+  "quicklinks": true,
+  "textShadow": 0.2,
+  "announcements": "major",
+  "review": 1,
+  "css": "",
+  "hide": {
+    "settingsicon": false,
+    "greetings": false
+  },
+  "linkstyle": "large",
+  "linknewtab": true,
+  "linksrow": 6,
+  "linktabs": {
+    "active": false,
+    "selected": 0,
+    "titles": [
+      ""
+    ]
+  },
+  "clock": {
+    "size": 1.375,
+    "ampm": false,
+    "analog": false,
+    "seconds": false,
+    "face": "none",
+    "style": "round",
+    "timezone": "auto"
+  },
+  "unsplash": {
+    "every": "hour",
+    "collection": "",
+    "lastCollec": "day",
+    "time": 1714984386017
+  },
+  "weather": {
+    "unit": "metric",
+    "provider": "",
+    "moreinfo": "yhw",
+    "forecast": "always",
+    "temperature": "actual",
+    "geolocation": "off",
+    "ccode": "DK",
+    "city": "Albertslund"
+  },
+  "notes": {
+    "on": false,
+    "width": 40,
+    "opacity": 0.1,
+    "align": "left"
+  },
+  "searchbar": {
+    "on": true,
+    "opacity": 0.1,
+    "newtab": true,
+    "suggestions": true,
+    "engine": "ddg",
+    "request": "",
+    "placeholder": ""
+  },
+  "quotes": {
+    "on": true,
+    "author": true,
+    "type": "inspirobot",
+    "frequency": "day",
+    "last": 1714984132571
+  },
+  "font": {
+    "size": "14",
+    "family": "",
+    "system": true,
+    "weightlist": [],
+    "weight": "400"
+  },
+  "move": {
+    "selection": "single",
+    "layouts": {
+      "single": {
+        "grid": [
+          [
+            "time"
+          ],
+          [
+            "main"
+          ],
+          [
+            "quicklinks"
+          ],
+          [
+            "searchbar"
+          ],
+          [
+            "quotes"
+          ]
+        ],
+        "items": {}
+      },
+      "double": {
+        "grid": [
+          [
+            "time",
+            "."
+          ],
+          [
+            "main",
+            "."
+          ],
+          [
+            "quicklinks",
+            "."
+          ]
+        ],
+        "items": {}
+      },
+      "triple": {
+        "grid": [
+          [
+            ".",
+            "time",
+            "."
+          ],
+          [
+            ".",
+            "main",
+            "."
+          ],
+          [
+            ".",
+            "quicklinks",
+            "."
+          ]
+        ],
+        "items": {}
+      }
+    }
+  }
+}
