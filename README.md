@@ -20,6 +20,7 @@ https://pages.appgeniusnest.top/share.html?file=redhat_ansible_automation_platfo
 https://pages.appgeniusnest.top/share.html?file=fremtidens_kontanter_nationalbanken.pdf
 https://pages.appgeniusnest.top/share.html?file=github_sponsor
 https://pages.appgeniusnest.top/share.html?file=MicrosoftStoreApps
+https://pages.appgeniusnest.top/share.html?file=folkogsikkerhedpiece
 ```
 
 Page `share.html` is redirecting files to an actual URL address by using some JavaScript code parsing `redirects.json` file.
