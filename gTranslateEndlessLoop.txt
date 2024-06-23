@@ -1,0 +1,5 @@
+# Paste this javascript into Browser console on translate.google.com to have endless loop on repeat with the Voice button.
+
+# Danish version
+# You may need translate this to your own language (English, French, Spanish, Russian, Norwegian, Swedish, Finnish and Polish)
+(() => { const e = t => { t.forEach(t => { ("childList" === t.type || "subtree" === t.type) && ((() => { const e = document.querySelector('button[aria-label="Lyt til kildetekst"]'); e && e.click() })()) }) }; new MutationObserver(e).observe(document.body, { childList: true, subtree: true }), (() => { const e = document.querySelector('button[aria-label="Lyt til kildetekst"]'); e && e.click() })() })();
