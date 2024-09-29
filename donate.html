@@ -44,6 +44,12 @@
         .bank-details {
             text-align: left;
         }
+        #hiddenContent {
+            display: none; /* Initially hidden */
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -76,7 +82,8 @@
             </div>
 
             <!-- Bank Transfer Donation -->
-            <div class="donation-method">
+            <button id="revealButton">Reveal Content</button>
+            <div class="donation-method" id="hiddenContent">
                 <h2>Donate via Bank Transfer</h2>
                 <p>Use the following details to make a donation via bank transfer:</p>
                 <div class="bank-details">
@@ -90,5 +97,6 @@
             </div>
         </div>
     </div>
+    <script src="scripts/main.js"></script>
 </body>
 </html>
