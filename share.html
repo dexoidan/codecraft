@@ -6,44 +6,45 @@
     <title>Redirector</title>
 </head>
 <body>
-    <!-- Script to handle redirection -->
-    <script>
-        console.log('Current File: ' + getUrlParameter('file'));
-        
-        // Function to fetch redirect URLs from JSON file and perform redirection
-        function handleRedirect() {
-            // Make an AJAX request to fetch the JSON data
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'https://pages.appgeniusnest.top/redirects.json', true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    // Parse JSON response into an object
-                    var redirectUrls = JSON.parse(xhr.responseText);
-                    // Get the requested filename from the query parameter in the address bar
-                    var requestedFile = getUrlParameter('file');
-                    // Check if the requested filename exists in the redirectUrls object
-                    if (redirectUrls.hasOwnProperty(requestedFile)) {
-                        // Redirect the user to the corresponding URL
-                        window.location.href = redirectUrls[requestedFile];
-                    } else {
-                        // Redirect not found, handle appropriately (e.g., show error message)
-                        console.log('File not found: ' + requestedFile);
-                    }
+<!-- Script to handle redirection -->
+<script>
+    console.log('Current File: ' + getUrlParameter('file'));
+
+    // Function to fetch redirect URLs from JSON file and perform redirection
+    function handleRedirect()
+    {
+        // Make an AJAX request to fetch the JSON data
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://pages.appgeniusnest.top/redirects.json', true);
+        xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+                // Parse JSON response into an object
+                var redirectUrls = JSON.parse(xhr.responseText);
+                // Get the requested filename from the query parameter in the address bar
+                var requestedFile = getUrlParameter('file');
+                // Check if the requested filename exists in the redirectUrls object
+                if (redirectUrls.hasOwnProperty(requestedFile)) {
+                    // Redirect the user to the corresponding URL
+                    window.location.href = redirectUrls[requestedFile];
+                } else {
+                    // Redirect not found, redirect to a default URL
+                    window.location.href = 'https://pages.appgeniusnest.top/404.html'; // Error page
                 }
-            };
-            xhr.send();
-        }
-
-        // Function to get URL parameter by name
-        function getUrlParameter(name) {
-            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-            var results = regex.exec(location.search);
-            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+            }
         };
+            xhr.send();
+    }
 
-        // Call the function when the page loads
-        handleRedirect();
-    </script>
+    // Function to get URL parameter by name
+    function getUrlParameter(name) {
+        name = name.replace(/[$]/, '\$').replace(/[$]/, '\$');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    };
+    
+    // Call the function when the page loads
+    handleRedirect();
+</script>
 </body>
 </html>
