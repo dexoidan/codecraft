@@ -1,0 +1,17 @@
+# Acknowledgements for domain.tld
+
+We would like to thank the following security researchers and organizations for their responsible disclosure of security vulnerabilities and for helping us improve the security of our services:
+
+1. **John Doe** (email: johndoe@example.com) – Discovered and reported a Cross-Site Scripting (XSS) vulnerability in our search functionality (reported on 2025-01-10).
+2. **Jane Smith** (email: janesmith@example.com) – Identified a vulnerability in our password reset process that could potentially allow account takeover (reported on 2025-01-15).
+3. **Researcher Team** (email: researchteam@secorg.org) – Found an issue with improper access controls in our API endpoints (reported on 2025-01-20).
+
+We appreciate your efforts and commitment to improving security!
+
+For more information, please visit our security page at: https://domain.tld/security/acknowledgements
+
+If you believe you should be included in this list and your report has been acknowledged but is missing here, please contact us at: security@domain.tld.
+
+Thank you for your continued support in helping us keep our services secure!
+
+# End of Acknowledgements
