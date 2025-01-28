@@ -1,0 +1,11 @@
+# security.txt file for domain.tld
+
+Contact: mailto:security@domain.tld
+Contact: https://domain.tld/security/contact
+Encryption: https://domain.tld/pgp-key.asc
+Acknowledgements: https://domain.tld/security/acknowledgements
+Preferred-Languages: en, fr
+Canonical: https://domain.tld/.well-known/security.txt
+Expires: 2026-01-28T00:00:00Z
+
+# Additional information can go here
