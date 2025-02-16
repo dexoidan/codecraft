@@ -77,5 +77,3 @@ This folder contains various resources and files for use in programming, researc
 ### License
 
 This repository is licensed under the MIT License. See LICENSE for more information.
-
-### Makes Sense
