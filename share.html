@@ -7,41 +7,37 @@
 </head>
 <body>
 <script>
-    /**
-     * Gets a URL query parameter by name.
-     * @param {string} name - Parameter name to retrieve.
-     * @returns {string} Value of the parameter or empty string.
-     */
     function getUrlParameter(name) {
         const regex = new RegExp('[?&]' + name + '=([^&#]*)');
         const results = regex.exec(window.location.search);
         return results ? decodeURIComponent(results[1].replace(/\+/g, ' ')) : '';
     }
 
-    /**
-     * Redirects user to a mapped URL based on either `url` or `file` parameter.
-     */
+    function isValidUrl(url) {
+        const regex = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}(\/[\w\-_\.]+)*\/?$/;
+        return regex.test(url);
+    }
+
     function handleRedirect() {
         const directUrl = getUrlParameter('url');
         const fileKey = getUrlParameter('file');
 
-        // If a direct URL is given, use it immediately
-        if (directUrl) {
-            console.log(`Redirecting to direct URL: ${directUrl}`);
+        if (directUrl && isValidUrl(directUrl)) {
+            console.log(`Redirecting to valid direct URL: ${directUrl}`);
             window.location.href = directUrl;
             return;
         }
 
-        // If no file key is provided, redirect to 404
         if (!fileKey) {
             console.warn('Missing "file" parameter.');
+            alert('File parameter is missing, redirecting to 404...');
             redirectTo404();
             return;
         }
 
-        // Fetch redirect mappings from JSON
         const xhr = new XMLHttpRequest();
-        xhr.open('GET', 'https://pages.appgeniusnest.top/redirects.json', true);
+        const cacheBuster = new Date().getTime();
+        xhr.open('GET', `https://pages.appgeniusnest.top/redirects.json?cb=${cacheBuster}`, true);
 
         xhr.onload = function () {
             if (xhr.status !== 200) {
@@ -52,8 +48,6 @@
 
             try {
                 const redirects = JSON.parse(xhr.responseText);
-
-                // Normalize keys for case-insensitive matching
                 const normalizedKey = fileKey.toLowerCase();
                 const matchedKey = Object.keys(redirects).find(key => key.toLowerCase() === normalizedKey);
 
@@ -63,6 +57,7 @@
                     window.location.href = targetUrl;
                 } else {
                     console.warn(`No matching redirect found for: ${fileKey}`);
+                    alert('Sorry, no matching page found.');
                     redirectTo404();
                 }
             } catch (error) {
@@ -73,20 +68,18 @@
 
         xhr.onerror = function () {
             console.error('Network error while requesting redirects.json');
+            alert('We are having trouble fetching the redirects. Please try again later.');
             redirectTo404();
         };
 
         xhr.send();
     }
 
-    /**
-     * Redirects the user to a 404 error page.
-     */
     function redirectTo404() {
+        //alert('Page not found, redirecting to a 404 error page...');
         window.location.href = 'https://pages.appgeniusnest.top/404.html';
     }
 
-    // Run on page load
     handleRedirect();
 </script>
 </body>
