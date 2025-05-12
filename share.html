@@ -18,6 +18,27 @@
         return regex.test(url);
     }
 
+    function levenshtein(a, b) {
+        const dp = Array.from({ length: a.length + 1 }, () => []);
+        for (let i = 0; i <= a.length; i++) dp[i][0] = i;
+        for (let j = 0; j <= b.length; j++) dp[0][j] = j;
+
+        for (let i = 1; i <= a.length; i++) {
+            for (let j = 1; j <= b.length; j++) {
+                if (a[i - 1].toLowerCase() === b[j - 1].toLowerCase()) {
+                    dp[i][j] = dp[i - 1][j - 1];
+                } else {
+                    dp[i][j] = Math.min(
+                        dp[i - 1][j] + 1,
+                        dp[i][j - 1] + 1,
+                        dp[i - 1][j - 1] + 1
+                    );
+                }
+            }
+        }
+        return dp[a.length][b.length];
+    }
+
     function handleRedirect() {
         const directUrl = getUrlParameter('url');
         const fileKey = getUrlParameter('file');
@@ -48,27 +69,52 @@
 
             try {
                 const redirects = JSON.parse(xhr.responseText);
-                const normalizedKey = fileKey.toLowerCase();
-                const matchedKey = Object.keys(redirects).find(key => key.toLowerCase() === normalizedKey);
+                const keys = Object.keys(redirects);
 
-                if (matchedKey) {
-                    const targetUrl = redirects[matchedKey];
-                    console.log(`Redirecting to mapped URL: ${targetUrl}`);
-                    window.location.href = targetUrl;
-                } else {
-                    console.warn(`No matching redirect found for: ${fileKey}`);
-                    alert('Sorry, no matching page found.');
-                    redirectTo404();
+                // 1. Exact match
+                if (fileKey in redirects) {
+                    window.location.href = redirects[fileKey];
+                    return;
                 }
-            } catch (error) {
-                console.error('Error parsing redirects.json:', error);
+
+                // 2. Case-insensitive match
+                const ciMatch = keys.find(key => key.toLowerCase() === fileKey.toLowerCase());
+                if (ciMatch) {
+                    alert(`Redirecting to case-insensitive match: ${ciMatch}`);
+                    window.location.href = redirects[ciMatch];
+                    return;
+                }
+
+                // 3. Levenshtein-based suggestion
+                let closestKey = '';
+                let minDistance = Infinity;
+                for (const key of keys) {
+                    const dist = levenshtein(fileKey, key);
+                    if (dist < minDistance) {
+                        minDistance = dist;
+                        closestKey = key;
+                    }
+                }
+
+                if (minDistance <= 3) {
+                    if (confirm(`No exact match for "${fileKey}". Did you mean "${closestKey}"? Click OK to go there.`)) {
+                        window.location.href = redirects[closestKey];
+                        return;
+                    }
+                } else {
+                    alert(`No match found for "${fileKey}".`);
+                }
+
+                redirectTo404();
+            } catch (err) {
+                console.error('Error parsing redirects.json:', err);
                 redirectTo404();
             }
         };
 
         xhr.onerror = function () {
             console.error('Network error while requesting redirects.json');
-            alert('We are having trouble fetching the redirects. Please try again later.');
+            alert('Network issue occurred. Please try again later.');
             redirectTo404();
         };
 
@@ -76,7 +122,6 @@
     }
 
     function redirectTo404() {
-        alert('Page not found, redirecting to a 404 error page...');
         window.location.href = 'https://pages.appgeniusnest.top/404.html';
     }
 
