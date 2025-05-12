@@ -6,45 +6,66 @@
     <title>Redirector</title>
 </head>
 <body>
-<!-- Script to handle redirection -->
 <script>
-    console.log('Current File: ' + getUrlParameter('file'));
+    function getUrlParameter(name) {
+        name = name.replace(/[$]/, '\\$').replace(/[$]/, '\\$');
+        const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        const results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
 
-    // Function to fetch redirect URLs from JSON file and perform redirection
-    function handleRedirect()
-    {
-        // Make an AJAX request to fetch the JSON data
-        var xhr = new XMLHttpRequest();
+    function handleRedirect() {
+        const directUrl = getUrlParameter('url');
+        const fileKey = getUrlParameter('file');
+
+        if (directUrl) {
+            console.log('Redirecting to direct URL: ' + directUrl);
+            window.location.href = directUrl;
+            return;
+        }
+
+        if (!fileKey) {
+            console.warn('No file parameter provided.');
+            window.location.href = 'https://pages.appgeniusnest.top/404.html';
+            return;
+        }
+
+        const xhr = new XMLHttpRequest();
         xhr.open('GET', 'https://pages.appgeniusnest.top/redirects.json', true);
-        xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-                // Parse JSON response into an object
-                var redirectUrls = JSON.parse(xhr.responseText);
-                // Get the requested filename from the query parameter in the address bar
-                var requestedFile = getUrlParameter('file');
-                // Check if the requested filename exists in the redirectUrls object
-                if (redirectUrls.hasOwnProperty(requestedFile)) {
-                    // Redirect the user to the corresponding URL
-                    window.location.href = redirectUrls[requestedFile];
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    try {
+                        const redirectUrls = JSON.parse(xhr.responseText);
+                        console.log('Looking up key:', fileKey);
+
+                        if (redirectUrls.hasOwnProperty(fileKey)) {
+                            const target = redirectUrls[fileKey];
+                            console.log('Redirecting to mapped URL:', target);
+                            window.location.href = target;
+                        } else {
+                            console.warn('Key not found in JSON:', fileKey);
+                            window.location.href = 'https://pages.appgeniusnest.top/404.html';
+                        }
+                    } catch (e) {
+                        console.error('JSON parse error:', e);
+                        window.location.href = 'https://pages.appgeniusnest.top/404.html';
+                    }
                 } else {
-                    // Redirect not found, redirect to a default URL
-                    window.location.href = 'https://pages.appgeniusnest.top/404.html'; // Error page
+                    console.error('Failed to fetch redirects.json. Status:', xhr.status);
+                    window.location.href = 'https://pages.appgeniusnest.top/404.html';
                 }
             }
         };
-            xhr.send();
+        xhr.onerror = function () {
+            console.error('Network error while loading redirects.json');
+            window.location.href = 'https://pages.appgeniusnest.top/404.html';
+        };
+        xhr.send();
     }
 
-    // Function to get URL parameter by name
-    function getUrlParameter(name) {
-        name = name.replace(/[$]/, '\$').replace(/[$]/, '\$');
-        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-        var results = regex.exec(location.search);
-        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-    };
-    
-    // Call the function when the page loads
     handleRedirect();
 </script>
 </body>
 </html>
+<!-- Compare this snippet from 404.html: -->
