@@ -80,7 +80,6 @@
                 // 2. Case-insensitive match
                 const ciMatch = keys.find(key => key.toLowerCase() === fileKey.toLowerCase());
                 if (ciMatch) {
-                    alert(`Redirecting to case-insensitive match: ${ciMatch}`);
                     window.location.href = redirects[ciMatch];
                     return;
                 }
