@@ -25,6 +25,10 @@ https://pages.appgeniusnest.top/share.html?file=forberedtpaakrisebrs
 https://pages.appgeniusnest.top/share.html?file=msftadminconsent
 https://pages.appgeniusnest.top/share.html?file=someaddiction
 https://pages.appgeniusnest.top/share.html?file=certaiarchitect
+https://pages.appgeniusnest.top/share.html?file=albiononline
+https://pages.appgeniusnest.top/share.html?file=displate
+https://pages.appgeniusnest.top/share.html?file=codecademy
+https://pages.appgeniusnest.top/share.html?file=albertschoolbusiness
 ```
 
 Page `share.html` is redirecting files to an actual URL address by using some JavaScript code parsing `redirects.json` file.
